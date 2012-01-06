@@ -39,7 +39,6 @@ public class OpMaths extends Operation {
 			try {
 				this.wait();
 			} catch (InterruptedException e) {
-				//On avertit les observateurs que l'heure a été mise à jour !
 				this.notifyObservers(this.calcul());
 			}
 		}
