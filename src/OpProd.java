@@ -15,7 +15,7 @@ public class OpProd extends Operation {
 		this.output = new ArrayList<Data>();
 		SF tmp = new SF(a);
 		this.output.add(tmp);
-		System.out.println("test");
+		System.out.println("OpProd : Production de valeurs : ");
 		System.out.println(tmp.value);
 		
 	}
@@ -23,9 +23,16 @@ public class OpProd extends Operation {
 	
 	public Data prod(){
 		Data tmp = this.getLastOutput(0);
-		System.out.println("Le producteur crée la notification");
+		System.out.println("OpProd : On notifie");
+		this.setChanged();
 		this.notifyObservers(tmp);
 		return tmp;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

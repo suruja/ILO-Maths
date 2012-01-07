@@ -178,5 +178,10 @@ public abstract class Data {
 	public void setComponentAsOutput(Component componentAsOutput) {
 		this.componentAsOutput = componentAsOutput;
 	}
+	
+	public void toString(Data data){		
+		if(data.value.getClass() == Integer.class) //Si c'est un entier
+			System.out.println((Integer) data.value);
+	}
 
 }

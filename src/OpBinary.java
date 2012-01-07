@@ -10,4 +10,10 @@ public class OpBinary extends Operation {
 		
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

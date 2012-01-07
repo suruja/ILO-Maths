@@ -10,4 +10,10 @@ public class OpBool extends Operation {
 		
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

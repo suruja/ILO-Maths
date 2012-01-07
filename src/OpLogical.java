@@ -10,4 +10,10 @@ public class OpLogical extends Operation {
 		
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

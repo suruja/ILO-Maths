@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 
-public abstract class Component extends Observable implements Observer {
+public abstract class Component extends Observable implements Observer, Runnable {
 
 	/** 
 	 * @uml.property name="input"
