@@ -16,7 +16,14 @@ public abstract class Data {
 	 * @uml.property  name="value"
 	 */
 	public Object getValue() {
-		return value;
+		return this.value;
+/*		if(this.value instanceof Integer)
+			return ((Integer) value).intValue();
+		else if(this.value instanceof Float)
+			return ((Float) value).floatValue();
+		else if(this.value instanceof Double)
+			return ((Double) value).doubleValue();
+		else return (Number)value;*/
 	}
 
 	/**

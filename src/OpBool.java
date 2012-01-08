@@ -1,19 +1,15 @@
-import java.util.Observable;
-
-
-
 public class OpBool extends Operation {
 
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+	public Boolean egal(Integer a, Integer b) {
+		return a.equals(b);
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
+	
+	public Boolean egal(Float a, Float b) {
+		return a.equals(b);
+	}
+	
+	public Boolean egal(Double a, Double b) {
+		return a.equals(b);
 	}
 
 }

@@ -24,6 +24,11 @@ public abstract class Component extends Observable implements Observer, Runnable
 		return input;
 	}
 
+	public Data getInput(int index) {
+		Object[] t = input.toArray();
+		return (Data)t[index];
+	}
+	
 	/**
 	 * Returns an iterator over the elements in this collection. 
 	 * @return  an <tt>Iterator</tt> over the elements in this collection
