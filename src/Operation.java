@@ -10,7 +10,8 @@ public class Operation extends Component {
 	private String name = "";
 	private ArrayList<Observable> required = new ArrayList<Observable>();
 	private HashMap<Object, Data> arguments = new HashMap<Object, Data>();
-	private Integer var_count = 0;
+	private Integer argument_count = 0;
+	private Integer current_argument_count = 0;
 	
 	public String getName() {
 		return name;
@@ -40,7 +41,8 @@ public class Operation extends Component {
 	
 	public synchronized void set(String op, Object[] obj) {
 		this.name = op;
-		this.var_count = obj.length;
+		this.argument_count = obj.length;
+		this.current_argument_count = obj.length;
 		int i = 0;
 		for(Object o : obj) {
 			if(o instanceof Data) this.arguments.put(o, (Data) o);
@@ -58,6 +60,7 @@ public class Operation extends Component {
 	}
 	
 	public synchronized void eval(String op) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		this.getOutput().clear();
 		String res = this.getName() + "(";
 		int n = this.getInput().size();
 		@SuppressWarnings("rawtypes")
@@ -91,7 +94,7 @@ public class Operation extends Component {
 		try {
 			for(Data d : (Iterable<Data>)arg) {
 				this.arguments.put(o, d);
-				this.var_count--;
+				this.current_argument_count--;
 				System.out.println("Operation \""+this.getName()+"\" : résultat de \""+ ((Operation) o).getName() +"\" obtenu et vaut " + d.getValue());
 			}
 		} catch (SecurityException e) {
@@ -104,27 +107,36 @@ public class Operation extends Component {
 	
 	public synchronized void run() {
 		try {
-			for(Observable r : this.required) {
-				synchronized(this) {
-					if(this.var_count != 0) {
-						if(((Component) r).isOutputEmpty()) {
-							System.out.println("Operation \""+this.getName()+"\" : on attend \""+ ((Operation) r).getName() +"\"");
-							this.wait();
-						}
-						else {
-							System.out.println("Operation \""+this.getName()+"\" : on a déjà \""+((Operation) r).getName()+"\"");
-							for(Data d : ((Component) r).getOutput()) {
-								this.arguments.put(r, d);
-								this.var_count--;
+			while(true) {
+				for(Observable r : this.required) {
+					synchronized(this) {
+						if(this.current_argument_count != 0) {
+							if(((Component) r).isOutputEmpty()) {
+								System.out.println("Operation \""+this.getName()+"\" : on attend \""+ ((Operation) r).getName() +"\"");
+								this.wait();
+							}
+							else {
+								System.out.println("Operation \""+this.getName()+"\" : on a déjà \""+((Operation) r).getName()+"\"");
+								for(Data d : ((Component) r).getOutput()) {
+									this.arguments.put(r, d);
+									this.current_argument_count--;
+								}
 							}
 						}
 					}
 				}
+				
+				for( Data d : this.arguments.values()) this.addInput(d);
+				this.eval(this.name);
+				this.setChanged();
+				this.notifyObservers(this.getOutput());
+				
+				this.getInput().clear();
+				this.required.clear();
+				this.current_argument_count = this.argument_count;
+				this.wait();
 			}
-			for( Data d : this.arguments.values()) this.addInput(d);
-			this.eval(this.name);
-			this.setChanged();
-			this.notifyObservers(this.getOutput());
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
