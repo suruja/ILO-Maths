@@ -37,45 +37,16 @@ public class Operation extends Component {
 	}
 	
 	
-	public void set(String op, Data d, Component c) {
+	public void set(String op, Object[] obj) {
 		this.name = op;
-		this.addInput(d);
-		c.addObserver(this);
-		this.required.add(c);
-		
-		Thread t = new Thread(this);
-		t.start();
-	}
-	
-	public void set(String op, Component c1, Component c2) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
-		this.name = op;
-		c1.addObserver(this);
-		this.required.add(c1);
-		c2.addObserver(this);
-		this.required.add(c2);
-		Thread t = new Thread(this);
-		t.start();
-	}
-		
-	public void set(String op, Data d1, Data d2) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
-		this.name = op;
-		this.addInput(d1);
-		this.addInput(d2);
-		Thread t = new Thread(this);
-		t.start();
-	}
-	
-	public void set(String op, Component c) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
-		this.name = op;
-		c.addObserver(this);
-		this.required.add(c);
-		Thread t = new Thread(this);
-		t.start();
-	}
-	
-	public void set(String op, Data d) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
-		this.name = op;
-		this.addInput(d);
+		for(Object o : obj) {
+			if(o instanceof Data) this.addInput((Data) o);
+			else if(o instanceof Component) {
+				((Component) o).addObserver(this);
+				this.required.add((Observable) o);
+			}
+		}
+				
 		Thread t = new Thread(this);
 		t.start();
 	}
