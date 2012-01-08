@@ -7,9 +7,9 @@ import java.util.Observable;
 
 
 public class Operation extends Component {
-	private String name = "";
+	protected String name = "";
 	private ArrayList<Observable> required = new ArrayList<Observable>();
-	private HashMap<Object, Data> arguments = new HashMap<Object, Data>();
+	protected HashMap<Object, Data> arguments = new HashMap<Object, Data>();
 	private Integer argument_count = 0;
 	private Integer current_argument_count = 0;
 	
@@ -106,9 +106,10 @@ public class Operation extends Component {
 	}
 	
 	public synchronized void run() {
+		int i;
 		try {
 			while(true) {
-				for(Observable r : this.required) {
+			/*	for(Observable r : this.required) {
 					synchronized(this) {
 						if(this.current_argument_count != 0) {
 							if(((Component) r).isOutputEmpty()) {
@@ -124,17 +125,18 @@ public class Operation extends Component {
 							}
 						}
 					}
+				}*/
+				for(i=0 ; i<this.argument_count ; i++){
+					this.wait();//On attend de récupérer toutes nos données
 				}
-				
-				for( Data d : this.arguments.values()) this.addInput(d);
-				this.eval(this.name);
+				for( Data d : this.arguments.values()) this.addInput(d);//Une fois qu'elles sont récupérées, on les met dans Input
+				this.eval(this.name);//On execute le calcul et on met le résultat dans Output
 				this.setChanged();
-				this.notifyObservers(this.getOutput());
+				this.notifyObservers(this.getOutput());//On préviens les autres que le calcul a été exectué
 				
-				this.getInput().clear();
-				this.required.clear();
-				this.current_argument_count = this.argument_count;
-				this.wait();
+				this.getInput().clear();//On nettoie le input()
+				//this.required.clear();
+				this.current_argument_count = this.argument_count; //On remet à jour le compteur
 			}
 			
 		} catch (InterruptedException e) {
