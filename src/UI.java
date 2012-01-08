@@ -1,8 +1,4 @@
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.Observable;
-import java.util.Observer;
-
 
 
 public class UI {
@@ -27,18 +23,22 @@ public class UI {
 		/**** Initialisation des Components****/
 		/*OpProd d1 = new OpProd(2);
 		OpProd d2 = new OpProd(3);*/
-		Constant a = new Constant(2.0);
-		Constant b = new Constant(3.0);
+		Constant a = new Constant(2);
+		Constant init = new Constant(1);
+		Constant step = new Constant(1);
+		Constant b = new Constant(5);
 		OpMaths c = new OpMaths();
 		OpMaths d = new OpMaths();
 		OpMaths e = new OpMaths();
 		OpMaths f = new OpMaths();
 		OpBool g = new OpBool();
+		//VariableBuilder a = new VariableBuilder();
 		
+		//a.set("increment", new Object[] {init, b, step});
+		f.set("sin", new Object[] {e});
 		c.set("divise", new Object[] {a, b});
 		g.set("egal", new Object[] {a, e});
 		d.set("moins", new Object[] {a, c});
-		f.set("sin", new Object[] {e});
 		e.set("plus", new Object[] {c, d});	
 		
 		
