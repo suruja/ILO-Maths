@@ -1,13 +1,15 @@
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 
 
 
 public class Operation extends Component {
-	private String name;
-	private ArrayList<Observable> required;
+	private String name = "";
+	private ArrayList<Observable> required = new ArrayList<Observable>();
+	private HashMap<Object, Data> arguments = new HashMap<Object, Data>();
 	private Integer var_count = 0;
 	
 	public String getName() {
@@ -31,22 +33,23 @@ public class Operation extends Component {
 
 
 	public Operation(){
-		this.name = "";
 		this.setInput(new ArrayList<Data>());
 		this.setOutput(new ArrayList<Data>());
-		this.required = new ArrayList<Observable>();
 	}
 	
 	
 	public synchronized void set(String op, Object[] obj) {
 		this.name = op;
 		this.var_count = obj.length;
+		int i = 0;
 		for(Object o : obj) {
-			if(o instanceof Data) this.addInput((Data) o);
+			if(o instanceof Data) this.arguments.put(o, (Data) o);
 			else if(o instanceof Component) {
 				((Component) o).addObserver(this);
 				this.required.add((Observable) o);
+				this.arguments.put(o, null);
 			}
+			i++;
 		}
 		System.out.println("Operation \""+this.getName()+"\" : on crée un nouveau thread");
 		System.out.println("Operation \""+this.getName()+"\" : a "+this.getInput().size()+" entrée(s) et observe "+ this.required.size() +" composant(s)");
@@ -85,10 +88,9 @@ public class Operation extends Component {
 	@SuppressWarnings("unchecked")
 	@Override
 	public synchronized void update(Observable o, Object arg) {
-		//setVar((Data) arg);
 		try {
 			for(Data d : (Iterable<Data>)arg) {
-				this.addInput(d);
+				this.arguments.put(o, d);
 				this.var_count--;
 				System.out.println("Operation \""+this.getName()+"\" : résultat de \""+ ((Operation) o).getName() +"\" obtenu et vaut " + d.getValue());
 			}
@@ -112,13 +114,14 @@ public class Operation extends Component {
 						else {
 							System.out.println("Operation \""+this.getName()+"\" : on a déjà \""+((Operation) r).getName()+"\"");
 							for(Data d : ((Component) r).getOutput()) {
-								this.addInput(d);
+								this.arguments.put(r, d);
 								this.var_count--;
 							}
 						}
 					}
 				}
-			}	
+			}
+			for( Data d : this.arguments.values()) this.addInput(d);
 			this.eval(this.name);
 			this.setChanged();
 			this.notifyObservers(this.getOutput());
