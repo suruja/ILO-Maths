@@ -42,8 +42,15 @@ public class Operation extends Component {
 		for(Object o : obj) {
 			if(o instanceof Data) this.addInput((Data) o);
 			else if(o instanceof Component) {
-				((Component) o).addObserver(this);
-				this.required.add((Observable) o);
+				if(((Component) o).isOutputEmpty()) {
+					((Component) o).addObserver(this);
+					this.required.add((Observable) o);
+				}
+				else {
+					for(Data d : ((Component) o).getOutput()) {
+						this.addInput(d);
+					}
+				}
 			}
 		}
 				
@@ -121,7 +128,7 @@ public class Operation extends Component {
 		System.out.println("Operation \""+this.getName()+"\" : On a lancé le thread");
 		/*while(true){*/
 			try {
-				for(int i=0; i<this.required.size(); i++) {
+				for(Observable r : this.required) {
 					System.out.println("Operation \""+this.getName()+"\" : On attend");
 					this.wait();
 				}
