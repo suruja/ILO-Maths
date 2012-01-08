@@ -35,11 +35,13 @@ public class UI {
 		OpMaths f = new OpMaths();
 		OpBool g = new OpBool();
 		
+		c.set("divise", new Object[] {a, b});
 		g.set("egal", new Object[] {a, e});
+		d.set("moins", new Object[] {a, c});
 		f.set("sin", new Object[] {e});
 		e.set("plus", new Object[] {c, d});	
-		d.set("moins", new Object[] {a, c});
-		c.set("divise", new Object[] {a, b});
+		
+		
 		
 		
 		

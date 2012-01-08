@@ -1,4 +1,5 @@
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -37,23 +38,16 @@ public class Operation extends Component {
 	}
 	
 	
-	public void set(String op, Object[] obj) {
+	public synchronized void set(String op, Object[] obj) {
 		this.name = op;
 		for(Object o : obj) {
 			if(o instanceof Data) this.addInput((Data) o);
 			else if(o instanceof Component) {
-				if(((Component) o).isOutputEmpty()) {
-					((Component) o).addObserver(this);
-					this.required.add((Observable) o);
-				}
-				else {
-					for(Data d : ((Component) o).getOutput()) {
-						this.addInput(d);
-					}
-				}
+				((Component) o).addObserver(this);
+				this.required.add((Observable) o);
 			}
 		}
-				
+		System.out.println("Operation \""+this.getName()+"\" : a déjà "+this.getInput().size()+" entrée(s) et observe "+ this.required.size() +" composant(s)");
 		Thread t = new Thread(this);
 		t.start();
 	}
@@ -87,10 +81,12 @@ public class Operation extends Component {
 	
 	@Override
 	public synchronized void update(Observable o, Object arg) {
-		System.out.println("Operation \""+this.getName()+"\" : les composants observés ont fourni leur résultat, on lance le calcul");
 		//setVar((Data) arg);
 		try {
-			for(Data d : (Iterable<Data>)arg) this.addInput(d);
+			for(Data d : (Iterable<Data>)arg) {
+				this.addInput(d);
+				System.out.println("Operation \""+this.getName()+"\" : résultat de \""+ ((Operation) o).getName() +"\" obtenu et vaut " + d.getValue());
+			}
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,39 +121,42 @@ public class Operation extends Component {
 	}*/
 	
 	public synchronized void run() {
-		System.out.println("Operation \""+this.getName()+"\" : On a lancé le thread");
-		/*while(true){*/
-			try {
-				for(Observable r : this.required) {
-					System.out.println("Operation \""+this.getName()+"\" : On attend");
+		System.out.println("Operation \""+this.getName()+"\" : on crée un nouveau thread");
+
+		try {
+			for(Observable r : this.required) {
+				if(((Component) r).isOutputEmpty()) {
+					System.out.println("Operation \""+this.getName()+"\" : on attend \""+ ((Operation) r).getName() +"\"");
 					this.wait();
 				}
-				/*System.out.println("Operation \""+this.getName()+"\" : Première interruption de l'attente, on attend encore");
-				this.wait();
-				System.out.println("Operation \""+this.getName()+"\" : Deuxième interruption de l'attente, on a les deux variables, on notifie le calcul");*/
-				/*if(this.getInput().size() == 2) this.eval(this.name);*/
-				this.eval(this.name);
-				this.setChanged();
-				this.notifyObservers(this.getOutput());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+				else {
+					System.out.println("Operation \""+this.getName()+"\" : on a déjà \""+((Operation) r).getName()+"\"");
+					for(Data d : ((Component) r).getOutput()) {
+						this.addInput(d);
+					}
+				}
 			}
-		/*}*/ catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			this.eval(this.name);
+			this.setChanged();
+			this.notifyObservers(this.getOutput());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
