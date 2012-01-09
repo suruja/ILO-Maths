@@ -54,13 +54,13 @@ public class UI {
 
 		//f.set("sin", new Object[] {e});
 		//y.set("buffer", new Object[] {c});
-		x.set("buffer", new Object[] {i});
+		//x.set("buffer", new Object[] {i});
 		//c.set("division", new Object[] {i, k});
 		//v.set("plot", new Object[] {x,y});
 		//g.set("tan", new Object[] {i});
 		//h.set("exp", new Object[] {e});
 		//d.set("substraction", new Object[] {i, c});
-		//e.set("addition", new Object[] {c, d});	
+		e.set("addition", new Object[] {i, k});	
 		i.set("produit",new Object[] {a,b,step});
 		k.set("produit",new Object[] {b});
 		
