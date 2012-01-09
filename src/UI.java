@@ -30,39 +30,44 @@ public class UI {
 		/**** Initialisation des Components****/
 		/*OpProd d1 = new OpProd(2);
 		OpProd d2 = new OpProd(3);*/
-		Constant a = new Constant(2.);
-		Constant init = new Constant(1.);
-		Constant step = new Constant(1.);
-		Constant b = new Constant(10.);
-		OpMaths c = new OpMaths();
-		OpMaths d = new OpMaths();
-		OpMaths e = new OpMaths();
+		Constant a = new Constant(1.);
+		Constant step = new Constant(0.5);
+		Constant b = new Constant(5.);
+		
+		Constant aa = new Constant(1.);
+		Constant stepp = new Constant(1.);
+		Constant bb = new Constant(5.);
+		
+		OpArith c = new OpArith();
+		OpArith d = new OpArith();
+		OpArith e = new OpArith();
 		OpMaths f = new OpMaths();
 		OpMaths h = new OpMaths();
 		OpMaths j = new OpMaths();
-		OpBool g = new OpBool();
+		OpMaths g = new OpMaths();
 		OpProdCons y = new OpProdCons();
 		OpProdCons x = new OpProdCons();
 		OpCons v = new OpCons();
 		
 		OpProd k = new OpProd();
 		VariableBuilder i = new VariableBuilder();
-		//VariableBuilder a = new VariableBuilder();
-		
-		//a.set("increment", new Object[] {init, b, step});
 		
 
 		//f.set("sin", new Object[] {e});
-		//y.set("buffer", new Object[] {c});
-		//x.set("buffer", new Object[] {i});
-		//c.set("division", new Object[] {i, k});
+		y.set("buffer", new Object[] {e});
+		x.set("buffer", new Object[] {i});
+		c.set("division", new Object[] {e, a});
 		//v.set("plot", new Object[] {x,y});
-		//g.set("tan", new Object[] {i});
-		//h.set("exp", new Object[] {e});
+		g.set("tan", new Object[] {i});
+		h.set("exp", new Object[] {e});
 		//d.set("substraction", new Object[] {i, c});
-		e.set("addition", new Object[] {i, k});	
+		e.set("addition", new Object[] {i, a});	
+		
+		/*
+		c.set("pow", new Object[] {f, k});
+		f.set("cos", new Object[] {i});*/
+		//k.set("produit",new Object[] {a});
 		i.set("produit",new Object[] {a,b,step});
-		k.set("produit",new Object[] {b});
 		
 		
 		// Create a chart:  

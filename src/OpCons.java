@@ -4,6 +4,7 @@ import info.monitorenter.gui.chart.traces.Trace2DSimple;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
@@ -14,8 +15,8 @@ import javax.swing.JFrame;
 
 public class OpCons extends Operation {
 
-	private float[] x = new float[100];
-	private float[] y = new float[100];
+	private double[][] t = new double[2][100];
+	private int t_count = 0;
 	/*@Override
 	public synchronized void update(Observable o, Object arg) {
 		System.out.print("OpCons : On a été notifié donc on affiche le resultat : ");
@@ -27,21 +28,65 @@ public class OpCons extends Operation {
 	}*/
 	
 	public Object[] plot(Object[] h){
+		
+		h[this.t_count] = h;
+		this.t_count++;
 		return h;
 	}
 	
 	@Override
 	public synchronized void run(){
 		try {
+			System.out.println("Plot attend");
 			this.wait();
-			System.out.println("On vient de recevoir un premier tableau");
+			for( Data d : this.arguments.values()) this.addInput(d);//Une fois qu'elles sont récupérées, on les met dans Input
+			System.out.println("Plot vient de recevoir un premier tableau");
+			try {
+				this.eval(this.name);
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			this.wait();
-			System.out.println("On vient de recevoir un dernier tableau, on affiche");
+			for( Data d : this.arguments.values()) this.addInput(d);//Une fois qu'elles sont récupérées, on les met dans Input
+			System.out.println("Plot vient de recevoir un dernier tableau, on affiche");
+			try {
+				this.eval(this.name);
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			print();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 	}
 	
@@ -53,8 +98,8 @@ public class OpCons extends Operation {
 	    chart.addTrace(trace);    
 	    // Add all points, as it is static: 
 	    Random random = new Random();
-	    for(int z=0;z>=100;z++){
-	      trace.addPoint(this.x[z],this.y[z]);
+	    for(int z=0;z<100;z++){
+	      trace.addPoint(this.t[0][z],this.t[1][z]);
 	    }
 	    // Make it visible:
 	    // Create a frame.

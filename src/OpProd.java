@@ -96,7 +96,7 @@ public class OpProd extends Operation {
 	}
 	
 	public double[] increment(double a, double b, double p) {
-		System.out.println("pppppppppppppppppppppppppp");
+		
 		int m = (int) ((b-a)/p);
 		this.argument_count = m;
 		double[] n = new double[m];

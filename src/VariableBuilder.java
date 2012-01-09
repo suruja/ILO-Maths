@@ -5,7 +5,7 @@ import java.util.Observable;
 
 public class VariableBuilder extends Operation {
 	public synchronized double[] increment(double a, double b, double p) {
-		System.out.println("pppppppppppppppppppppppppp");
+		
 		int m = (int) ((b-a)/p);
 		this.argument_count = m;
 		double[] n = new double[m];
@@ -15,7 +15,7 @@ public class VariableBuilder extends Operation {
 			n[j] = i;
 			j++;
 		}
-		System.out.println("Taille entre "+a+" et "+b+" avec un pas de "+p+" et donc une taille de "+j);
+		
 		return n;
 	}
 /*	public Double[] increment(Double a, Double b, Double p) {
@@ -66,12 +66,12 @@ public class VariableBuilder extends Operation {
 		n=this.n.length;
 
 		Thread.currentThread();
-		try {
-			Thread.sleep(1000);
+		/*try {
+			//Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
 		System.out.println("Taille du tableau : "+n);
 		}

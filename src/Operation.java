@@ -59,6 +59,10 @@ public class Operation extends Component {
 		t.start();
 	}
 	
+	public Method exec_method(String op, Class[] types) throws SecurityException, NoSuchMethodException {
+		return this.getClass().getDeclaredMethod(op, types);
+	}
+	
 	public synchronized void eval(String op) throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		this.getOutput().clear();
 		String res = this.getName() + "(";
@@ -79,11 +83,7 @@ public class Operation extends Component {
 		}
 		res += ") = ";
 		Method method;
-		try {
-			method = this.getClass().getDeclaredMethod(op, types);
-		} catch(NoSuchMethodException e) {
-			method = Math.class.getDeclaredMethod(op, types);
-		}
+		method = this.exec_method(op, types);
 		this.addOutput(new SF(method.invoke(this, params)));
 		i = 0;
 		n = this.getOutput().size();

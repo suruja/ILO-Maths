@@ -31,17 +31,17 @@ public class OpProdCons extends Operation {
 	public synchronized void run() {
 		int i=0;
 		int n=1;
-		System.out.println("Buffer : On commence le thread buffer "+this.a.size());
-		//if(this.getName()=="produit")	n=1;
-		while(i<5){ //On effectue la boucle qu'une seule fois pour le moment
+		//System.out.println("Buffer : On commence le thread buffer "+this.a.size());
+		while(i<100){ //On effectue la boucle qu'une seule fois pour le moment
 			//for( Data d : this.arguments.values()){
 			try {
 				this.wait();
-				for( Data d : this.arguments.values()) this.a.add(d);
+				for( Data d : this.arguments.values()) this.a.add(d.getValue());
 				
 			this.eval(this.name);										//normal
-			this.setChanged();											
-			System.out.println("Plot : On prévient que ça a changé "+i);			
+			this.setChanged();			
+			this.notifyObservers(this.a);
+			//System.out.println("Plot :On prévient que ça a changé "+i);			
 			this.notifyObservers(this.getOutput());						//On annonce le changement
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -57,21 +57,12 @@ public class OpProdCons extends Operation {
 			e.printStackTrace();
 		}
 		i++;
-	/*	if(this.getName()=="iterateur"){
-			Data a[],b,c;
-			Double d;
-			a=(Data[]) this.arguments;
-			d = (Double) a[1].value;
-			
-		}*/
-		//for( Data d : this.arguments.values()) d.setValue(n[i]);			//On affecte les nouvelles valeures
-		//this.clearOutput();
+		n=this.arguments.values().size();
 
 		}
-		this.clearInput();												//On nettoie l'Input
-		n=this.arguments.values().size();
+		//this.clearInput();												//On nettoie l'Input
 		System.out.println("Taille du tableau : "+n);
-		this.notifyObservers(this.a);
+		
 		//}
 	}
 
