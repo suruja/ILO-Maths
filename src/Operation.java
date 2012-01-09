@@ -8,10 +8,10 @@ import java.util.Observable;
 
 public class Operation extends Component {
 	protected String name = "";
-	private ArrayList<Observable> required = new ArrayList<Observable>();
+	protected ArrayList<Observable> required = new ArrayList<Observable>();
 	protected HashMap<Object, Data> arguments = new HashMap<Object, Data>();
-	private Integer argument_count = 0;
-	private Integer current_argument_count = 0;
+	protected Integer argument_count = 0;
+	protected Integer current_argument_count = 0;
 	
 	public String getName() {
 		return name;

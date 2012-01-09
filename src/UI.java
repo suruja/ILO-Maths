@@ -33,7 +33,7 @@ public class UI {
 		Constant a = new Constant(2.);
 		Constant init = new Constant(1.);
 		Constant step = new Constant(1.);
-		Constant b = new Constant(5.);
+		Constant b = new Constant(10.);
 		OpMaths c = new OpMaths();
 		OpMaths d = new OpMaths();
 		OpMaths e = new OpMaths();
@@ -41,21 +41,25 @@ public class UI {
 		OpMaths h = new OpMaths();
 		OpMaths j = new OpMaths();
 		OpBool g = new OpBool();
+		OpProdCons y = new OpProdCons();
+		OpProdCons x = new OpProdCons();
 		
 		OpProd k = new OpProd();
-		OpProd i = new OpProd();
+		VariableBuilder i = new VariableBuilder();
 		//VariableBuilder a = new VariableBuilder();
 		
 		//a.set("increment", new Object[] {init, b, step});
 		
 
-		f.set("sin", new Object[] {e});
+		//f.set("sin", new Object[] {e});
+		y.set("buffer", new Object[] {c});
+		x.set("buffer", new Object[] {i});
 		c.set("division", new Object[] {i, k});
-		g.set("tan", new Object[] {i});
-		h.set("exp", new Object[] {e});
-		d.set("substraction", new Object[] {i, c});
-		e.set("addition", new Object[] {c, d});	
-		i.set("produit",new Object[] {a});
+		//g.set("tan", new Object[] {i});
+		//h.set("exp", new Object[] {e});
+		//d.set("substraction", new Object[] {i, c});
+		//e.set("addition", new Object[] {c, d});	
+		i.set("produit",new Object[] {a,b,step});
 		k.set("produit",new Object[] {b});
 		
 		
@@ -68,7 +72,7 @@ public class UI {
 	    // Add all points, as it is static: 
 	    Random random = new Random();
 	    for(int z=100;z>=0;z--){
-	      trace.addPoint(z,random.nextDouble()*10.0+z);
+	      trace.addPoint(z,z*2);
 	    }
 	    // Make it visible:
 	    // Create a frame.
