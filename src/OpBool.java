@@ -1,6 +1,6 @@
 public class OpBool extends Operation {
 
-	public boolean egal(boolean a, boolean b) {
+	public boolean equality(boolean a, boolean b) {
 		return a==b;
 	}
 	

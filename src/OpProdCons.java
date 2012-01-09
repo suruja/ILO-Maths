@@ -5,8 +5,9 @@ import java.util.Observable;
 
 
 public class OpProdCons extends Operation {
-	private ArrayList<Object> a = new ArrayList<Object>(100); 
-	int i=0;
+	//private ArrayList<Object> table = new ArrayList<Object>();
+	private ArrayList<Number> table = new ArrayList<Number>();
+	//int i=0;
 	/*@Override
 	public synchronized void update(Observable o, Object arg) {
 		try {
@@ -24,10 +25,11 @@ public class OpProdCons extends Operation {
 		this.notify();
 	}*/
 	
-	public Object buffer(){
-		return this.a;
+	public ArrayList<Number> buffer(double a){
+		this.table.add(a);
+		return this.table;
 	}
-	
+	/*
 	public synchronized void run() {
 		int i=0;
 		int n=1;
@@ -65,5 +67,5 @@ public class OpProdCons extends Operation {
 		
 		//}
 	}
-
+*/
 }

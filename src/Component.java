@@ -138,14 +138,14 @@ public abstract class Component extends Observable implements Observer, Runnable
 		input.clear();
 	}
 
-	/**
-	 * @uml.property  name="output"
-	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="componentAsOutput:Data"
-	 * @uml.association  name="output"
+	/** 
+	 * @uml.property name="output"
+	 * @uml.associationEnd multiplicity="(0 -1)" inverse="componentAsOutput:Data"
+	 * @uml.association name="output"
 	 */
 	protected Collection<Data> output;
 
-	/**
+	/** 
 	 * Getter of the property <tt>output</tt>
 	 * @return  Returns the output.
 	 * @uml.property  name="output"
@@ -163,7 +163,7 @@ public abstract class Component extends Observable implements Observer, Runnable
 	 * @see java.util.Collection#iterator()
 	 * @uml.property  name="output"
 	 */
-	public Iterator<Data> outputIterator() {
+	public Iterator outputIterator() {
 		return output.iterator();
 	}
 
@@ -185,16 +185,6 @@ public abstract class Component extends Observable implements Observer, Runnable
 	 */
 	public boolean containsOutput(Data data) {
 		return output.contains(data);
-	}
-
-	/**
-	 * Returns <tt>true</tt> if this collection contains all of the elements in the specified collection.
-	 * @param elements  collection to be checked for containment in this collection.
-	 * @see java.util.Collection#containsAll(Collection)
-	 * @uml.property  name="output"
-	 */
-	public boolean containsAllOutput(Collection<?> output) {
-		return this.output.containsAll(output);
 	}
 
 	/**
@@ -236,15 +226,6 @@ public abstract class Component extends Observable implements Observer, Runnable
 	 */
 	public boolean addOutput(Data data) {
 		return output.add(data);
-	}
-
-	/**
-	 * Setter of the property <tt>output</tt>
-	 * @param output  the output to set.
-	 * @uml.property  name="output"
-	 */
-	public void setOutput(Collection<Data> output) {
-		this.output = output;
 	}
 
 	/**
@@ -296,6 +277,25 @@ public abstract class Component extends Observable implements Observer, Runnable
 			System.out.println("on va afficher une variable");
 			System.out.println(it.next().value);
 		}
+	}
+
+	/**
+	 * Returns <tt>true</tt> if this collection contains all of the elements in the specified collection.
+	 * @param elements  collection to be checked for containment in this collection.
+	 * @see java.util.Collection#containsAll(Collection)
+	 * @uml.property  name="output"
+	 */
+	public boolean containsAllOutput(Collection<Data> output) {
+		return this.output.containsAll(output);
+	}
+
+	/** 
+	 * Setter of the property <tt>output</tt>
+	 * @param output  the output to set.
+	 * @uml.property  name="output"
+	 */
+	public void setOutput(Collection<Data> output) {
+		this.output = output;
 	}
 
 }

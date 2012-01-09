@@ -6,6 +6,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Random;
 
@@ -14,9 +16,11 @@ import javax.swing.JFrame;
 
 
 public class OpCons extends Operation {
-
-	private double[][] t = new double[2][100];
-	private int t_count = 0;
+	private Chart2D chart = new Chart2D();
+    private ITrace2D trace = new Trace2DSimple();
+    private JFrame frame = new JFrame("MinimalStaticChart");
+	private HashMap<Number, Number> entries = new HashMap<Number, Number>();
+	
 	/*@Override
 	public synchronized void update(Observable o, Object arg) {
 		System.out.print("OpCons : On a été notifié donc on affiche le resultat : ");
@@ -27,14 +31,26 @@ public class OpCons extends Operation {
 		
 	}*/
 	
-	public Object[] plot(Object[] h){
-		
-		h[this.t_count] = h;
-		this.t_count++;
-		return h;
+	public void display(int a) {
+		System.out.println(a);
 	}
 	
-	@Override
+	public void display(float a) {
+		System.out.println(a);
+	}
+	
+	public void display(double a) {
+		System.out.println(a);
+	}
+	
+	public synchronized void plot(ArrayList<Number> x, ArrayList<Number> y){
+		for(int i=0; i<x.size(); i++) {	
+			this.entries.put(y.get(i), y.get(i));
+		}
+		this.print();
+	}
+	
+	/*
 	public synchronized void run(){
 		try {
 			System.out.println("Plot attend");
@@ -88,34 +104,31 @@ public class OpCons extends Operation {
 		}
 		
 		
-	}
+	}*/
 	
-	public void print(){
-	    Chart2D chart = new Chart2D();
-	    // Create an ITrace: 
-	    ITrace2D trace = new Trace2DSimple(); 
+	public synchronized void print(){
+	     
 	    // Add the trace to the chart. This has to be done before adding points (deadlock prevention): 
-	    chart.addTrace(trace);    
+	    this.chart.addTrace(this.trace);    
 	    // Add all points, as it is static: 
-	    Random random = new Random();
-	    for(int z=0;z<100;z++){
-	      trace.addPoint(this.t[0][z],this.t[1][z]);
+	    
+	    for( Entry<Number, Number> e : this.entries.entrySet()){
+	      this.trace.addPoint(e.getKey().doubleValue(), e.getValue().doubleValue());
 	    }
 	    // Make it visible:
 	    // Create a frame.
-	    JFrame frame = new JFrame("MinimalStaticChart");
 	    // add the chart to the frame: 
-	    frame.getContentPane().add(chart);
-	    frame.setSize(400,300);
+	    this.frame.getContentPane().add(this.chart);
+	    this.frame.setSize(400,300);
 	    // Enable the termination button [cross on the upper right edge]: 
-	    frame.addWindowListener(
+	    this.frame.addWindowListener(
 	        new WindowAdapter(){
 	          public void windowClosing(WindowEvent e){
 	              System.exit(0);
 	          }
 	        }
 	      );
-	    frame.setVisible(true);
+	    this.frame.setVisible(true);
 	}
 	
 	

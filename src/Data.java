@@ -31,35 +31,34 @@ public abstract class Data {
 	public void setValue(Object value) {
 		this.value = value;
 	}
-
-	/**
-	 * @uml.property  name="componentAsOutput"
-	 * @uml.associationEnd  inverse="output:Component"
-	 * @uml.association  name="output"
-	 */
-	private Component componentAsOutput;
-
-	/**
-	 * Getter of the property <tt>componentAsOutput</tt>
-	 * @return  Returns the componentAsOutput.
-	 * @uml.property  name="componentAsOutput"
-	 */
-	public Component getComponentAsOutput() {
-		return componentAsOutput;
-	}
-
-	/**
-	 * Setter of the property <tt>componentAsOutput</tt>
-	 * @param componentAsOutput  The componentAsOutput to set.
-	 * @uml.property  name="componentAsOutput"
-	 */
-	public void setComponentAsOutput(Component componentAsOutput) {
-		this.componentAsOutput = componentAsOutput;
-	}
-	
+/*
 	public void toString(Data data){		
 		if(data.value.getClass() == Integer.class) //Si c'est un entier
 			System.out.println((Integer) data.value);
+	}*/
+
+	/**
+	 * @uml.property  name="mF"
+	 * @uml.associationEnd  aggregation="composite" inverse="data:MF"
+	 */
+	private MF mf;
+
+	/**
+	 * Getter of the property <tt>mF</tt>
+	 * @return  Returns the mf.
+	 * @uml.property  name="mF"
+	 */
+	public MF getMF() {
+		return mf;
+	}
+
+	/**
+	 * Setter of the property <tt>mF</tt>
+	 * @param mF  The mf to set.
+	 * @uml.property  name="mF"
+	 */
+	public void setMF(MF mf) {
+		this.mf = mf;
 	}
 
 }

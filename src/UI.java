@@ -30,13 +30,9 @@ public class UI {
 		/**** Initialisation des Components****/
 		/*OpProd d1 = new OpProd(2);
 		OpProd d2 = new OpProd(3);*/
-		Constant a = new Constant(1.);
-		Constant step = new Constant(0.5);
-		Constant b = new Constant(5.);
-		
-		Constant aa = new Constant(1.);
-		Constant stepp = new Constant(1.);
-		Constant bb = new Constant(5.);
+		Constant a = new Constant(-1.);
+		Constant step = new Constant(0.1);
+		Constant b = new Constant(1.);
 		
 		OpArith c = new OpArith();
 		OpArith d = new OpArith();
@@ -48,80 +44,24 @@ public class UI {
 		OpProdCons y = new OpProdCons();
 		OpProdCons x = new OpProdCons();
 		OpCons v = new OpCons();
+		OpCons p = new OpCons();
 		
 		OpProd k = new OpProd();
 		VariableBuilder i = new VariableBuilder();
 		
 
 		//f.set("sin", new Object[] {e});
-		y.set("buffer", new Object[] {e});
 		x.set("buffer", new Object[] {i});
-		c.set("division", new Object[] {e, a});
-		//v.set("plot", new Object[] {x,y});
+		y.set("buffer", new Object[] {g});
+		
+		//c.set("division", new Object[] {e, a});
 		g.set("tan", new Object[] {i});
-		h.set("exp", new Object[] {e});
+		//h.set("exp", new Object[] {e});
 		//d.set("substraction", new Object[] {i, c});
-		e.set("addition", new Object[] {i, a});	
-		
-		/*
-		c.set("pow", new Object[] {f, k});
-		f.set("cos", new Object[] {i});*/
-		//k.set("produit",new Object[] {a});
-		i.set("produit",new Object[] {a,b,step});
-		
-		
-		// Create a chart:  
-	/*    Chart2D chart = new Chart2D();
-	    // Create an ITrace: 
-	    ITrace2D trace = new Trace2DSimple(); 
-	    // Add the trace to the chart. This has to be done before adding points (deadlock prevention): 
-	    chart.addTrace(trace);    
-	    // Add all points, as it is static: 
-	    Random random = new Random();
-	    for(int z=100;z>=0;z--){
-	      trace.addPoint(z,z*2);
-	    }
-	    // Make it visible:
-	    // Create a frame.
-	    JFrame frame = new JFrame("MinimalStaticChart");
-	    // add the chart to the frame: 
-	    frame.getContentPane().add(chart);
-	    frame.setSize(400,300);
-	    // Enable the termination button [cross on the upper right edge]: 
-	    frame.addWindowListener(
-	        new WindowAdapter(){
-	          public void windowClosing(WindowEvent e){
-	              System.exit(0);
-	          }
-	        }
-	      );
-	    frame.setVisible(true);
-		
-		*/
-		/*OpCons c = new OpCons(e);*/
-		
-		/**** Mise en place des Observers ****/
-		/*d1.addObserver(e);//e observe d1
-		d2.addObserver(e);//e observe d2
-		e.addObserver(c);//c observe e
-		
-		d1.prod();
-	//	e.update(d1, d1.getLastOutput(0) );
-	//	e.update(d2, d2.getLastOutput(0) );
-		
-		
-	//	System.out.println("On affiche les deux dernière valeurs : ");
-	//	d1.printLastOutput();
-	//	d2.printLastOutput();
-		
-	//	e.run();*/
-		/*Thread.currentThread();
-		Thread.sleep(5000);*/
-		
-		/*d2.prod();*/
-		
-		/*System.out.println("UI : Fin");*/
-		
+		//e.set("addition", new Object[] {i, a});	
+		//v.set("display", new Object[] {h});
+		p.set("plot", new Object[] {x, y});
+		i.set("produit",new Object[] {a, b, step});
 
 	}
 

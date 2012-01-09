@@ -6,12 +6,11 @@ import java.util.Observable;
 public class VariableBuilder extends Operation {
 	public synchronized double[] increment(double a, double b, double p) {
 		
-		int m = (int) ((b-a)/p);
-		this.argument_count = m;
+		int m = (int)(((b-a)/p)+1);
 		double[] n = new double[m];
 		int j = 0;
 		for(double i=a; i<b; i+=p) {
-			System.out.println("i="+i+";a="+a+";b="+b+"p="+p);
+			System.out.println("m = "+m+"; i="+i+";a="+a+";b="+b+"p="+p);
 			n[j] = i;
 			j++;
 		}
@@ -31,16 +30,16 @@ public class VariableBuilder extends Operation {
 	@Override
 	public synchronized void run() {
 		int i=0;
-		int n=1;
+		int d=1;
 		System.out.println("Le producteur est lancé");
 		//if(this.getName()=="produit")	n=1;
-		while(i<n){ 
+		while(i<d){ 
 			try {
-					this.addInput(new SF(this.n[i]));	//Même procédure qu'un composant
-					this.eval(this.name);										//normal
-					this.setChanged();											
-					System.out.println("On prévient que ça a changé");			
-					this.notifyObservers(this.getOutput());						//On annonce le changement
+				this.addInput(new SF(this.n[i]));	//Même procédure qu'un composant
+				this.eval(this.name);										//normal
+				this.setChanged();											
+				System.out.println("On prévient que ça a changé");			
+				this.notifyObservers(this.getOutput());						//On annonce le changement
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
@@ -63,9 +62,9 @@ public class VariableBuilder extends Operation {
 		//for( Data d : this.arguments.values()) d.setValue(n[i]);			//On affecte les nouvelles valeures
 		//this.clearOutput();
 		this.clearInput();												//On nettoie l'Input
-		n=this.n.length;
+		d=this.n.length;
 
-		Thread.currentThread();
+		//Thread.currentThread();
 		/*try {
 			//Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -73,7 +72,7 @@ public class VariableBuilder extends Operation {
 			e.printStackTrace();
 		}*/
 
-		System.out.println("Taille du tableau : "+n);
+		System.out.println("Taille du tableau : "+d);
 		}
 	}
 	public double produit(double a){
@@ -93,12 +92,11 @@ public class VariableBuilder extends Operation {
 	public synchronized void set(String op, Object[] obj) {
 		this.name = op;
 		this.argument_count = obj.length;
-		this.current_argument_count = obj.length;
 		int i = 0;
 		double[] tabi=new double[3];
 		
 		for(Object o : obj) {
-			tabi[i]= (Double) ((Data) o).value;
+			tabi[i]= (Double) ((Data) o).getValue();
 			i++;
 		}
 		this.n=this.increment(tabi[0], tabi[1], tabi[2]);

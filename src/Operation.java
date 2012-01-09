@@ -42,10 +42,13 @@ public class Operation extends Component {
 	public synchronized void set(String op, Object[] obj) {
 		this.name = op;
 		this.argument_count = obj.length;
-		this.current_argument_count = obj.length;
+		this.current_argument_count = this.argument_count;
 		int i = 0;
 		for(Object o : obj) {
-			if(o instanceof Data) this.arguments.put(o, (Data) o);
+			if(o instanceof Data) {
+				this.arguments.put(o, (Data) o);
+				this.current_argument_count--;
+			}
 			else if(o instanceof Component) {
 				((Component) o).addObserver(this);
 				this.required.add((Observable) o);
@@ -102,7 +105,6 @@ public class Operation extends Component {
 		try {
 			for(Data d : (Iterable<Data>)arg) {
 				this.arguments.put(o, d);
-				this.current_argument_count--;
 				System.out.println("Operation \""+this.getName()+"\" : résultat de \""+ ((Operation) o).getName() +"\" obtenu et vaut " + d.getValue());
 			}
 		} catch (SecurityException e) {
@@ -134,7 +136,7 @@ public class Operation extends Component {
 						}
 					}
 				}*/
-				for(i=0 ; i<this.argument_count ; i++){
+				for(i=0 ; i<this.current_argument_count ; i++){
 					this.wait();//On attend de récupérer toutes nos données
 				}
 				for( Data d : this.arguments.values()) this.addInput(d);//Une fois qu'elles sont récupérées, on les met dans Input
@@ -143,8 +145,9 @@ public class Operation extends Component {
 				this.notifyObservers(this.getOutput());//On préviens les autres que le calcul a été exectué
 				
 				this.getInput().clear();//On nettoie le input()
-				//this.required.clear();
-				//this.current_argument_count = this.argument_count; //On remet à jour le compteur
+				this.getOutput().clear();//On nettoie le output()
+				this.required.clear();
+				this.current_argument_count = this.argument_count; //On remet à jour le compteur
 			}
 			
 		} catch (InterruptedException e) {
