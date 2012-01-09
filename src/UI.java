@@ -23,17 +23,19 @@ public class UI {
 		/**** Initialisation des Components****/
 		/*OpProd d1 = new OpProd(2);
 		OpProd d2 = new OpProd(3);*/
-		Constant a = new Constant(2.0);
-		Constant init = new Constant(1);
-		Constant step = new Constant(1);
-		Constant b = new Constant(5.0);
+		Constant a = new Constant(2.);
+		Constant init = new Constant(1.);
+		Constant step = new Constant(1.);
+		Constant b = new Constant(5.);
 		OpMaths c = new OpMaths();
 		OpMaths d = new OpMaths();
 		OpMaths e = new OpMaths();
 		OpMaths f = new OpMaths();
+		OpMaths h = new OpMaths();
+		OpMaths j = new OpMaths();
 		OpBool g = new OpBool();
 		
-		OpProd h = new OpProd();
+		OpProd k = new OpProd();
 		OpProd i = new OpProd();
 		//VariableBuilder a = new VariableBuilder();
 		
@@ -41,12 +43,14 @@ public class UI {
 		
 
 		f.set("sin", new Object[] {e});
-		c.set("divise", new Object[] {h, i});
-		g.set("egal", new Object[] {h, e});
-		d.set("moins", new Object[] {h, c});
-		e.set("plus", new Object[] {c, d});	
-		h.set("produit",new Object[] {a});
-		i.set("produit",new Object[] {b});
+		c.set("division", new Object[] {i, k});
+		g.set("tan", new Object[] {i});
+		h.set("exp", new Object[] {e});
+		d.set("substraction", new Object[] {i, c});
+		e.set("addition", new Object[] {c, d});	
+		i.set("produit",new Object[] {a});
+		k.set("produit",new Object[] {b});
+		
 		
 		
 		

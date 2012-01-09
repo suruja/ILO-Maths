@@ -1,15 +1,18 @@
 public class OpBool extends Operation {
 
-	public Boolean egal(Integer a, Integer b) {
-		return a.equals(b);
+	public boolean egal(boolean a, boolean b) {
+		return a==b;
 	}
 	
-	public Boolean egal(Float a, Float b) {
-		return a.equals(b);
+	public boolean and(boolean a, boolean b) {
+		return a && b;
 	}
 	
-	public Boolean egal(Double a, Double b) {
-		return a.equals(b);
+	public boolean or(boolean a, boolean b) {
+		return a || b;
 	}
-
+	
+	public boolean not(boolean a) {
+		return ! a;
+	}
 }

@@ -63,7 +63,7 @@ public class OpProd extends Operation {
 		this.clearInput();												//On nettoie l'Input
 		}
 	}
-	public Double produit(Double a){
+	public double produit(double a){
 		return a;
 	}
 }

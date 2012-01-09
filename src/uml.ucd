@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="uml" size="2064,1318" id="" metadata="uml2-1.0" initialized="true" zoom="0.5" scrolledX="-266" scrolledY="223" tag="10" key="32303037303533312D313020696C6F5F70726F6A656374">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="uml" size="2064,1328" id="" metadata="uml2-1.0" initialized="true" zoom="0.5" scrolledX="-266" tag="10" key="32303037303533312D313020696C6F5F70726F6A656374">
   <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.0 //@children.15/@sourceConnections.0 //@children.15/@sourceConnections.1 //@children.12/@sourceConnections.1 //@children.12/@sourceConnections.0" name="Component" location="345,120" size="201,140" id="/Component" runTimeClassModel="macro,input,getInput(I),getLastOutput(I),printLastOutput(),output">
     <children xsi:type="editmodel:CompartmentEditModel" size="117,36">
       <children xsi:type="editmodel:AttributeEditModel" name="input" id="/Data@input+/Component@componentAsInput|/Data#input"/>
@@ -97,17 +97,18 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true" showAssociationMember="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="OpBool" location="-225,463" size="267,104" id="/OpBool" runTimeClassModel="egal(Ljava.lang.Double;Ljava.lang.Double;),egal(Ljava.lang.Integer;Ljava.lang.Integer;),egal(Ljava.lang.Float;Ljava.lang.Float;)">
+  <children xsi:type="editmodel:ClassEditModel" name="OpBool" location="-225,463" size="279,122" id="/OpBool" runTimeClassModel="and(ZZ),or(ZZ),egal(ZZ),not(Z)">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="244,54">
-      <children xsi:type="editmodel:MethodEditModel" name="egal" id="/OpBool#egal(Ljava.lang.Double;Ljava.lang.Double;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="egal" id="/OpBool#egal(Ljava.lang.Float;Ljava.lang.Float;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="egal" id="/OpBool#egal(Ljava.lang.Integer;Ljava.lang.Integer;)"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="256,72">
+      <children xsi:type="editmodel:MethodEditModel" name="and" id="/OpBool#and(ZZ)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="egal" id="/OpBool#egal(ZZ)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="or" id="/OpBool#or(ZZ)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="not" id="/OpBool#not(Z)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="/Operation&lt;-/OpBool" source="//@children.6" target="//@children.4" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="188,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="118,274"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="195,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="111,274"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true" showAssociationMember="true"/>
   </children>
@@ -117,54 +118,44 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="/Operation&lt;-/OpLogical" source="//@children.7" target="//@children.4" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
       <children xsi:type="editmodel:AssociationEndEditModel" location="5,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="169,274"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="162,274"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true" showAssociationMember="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="OpMaths" location="37,360" size="270,428" id="/OpMaths" runTimeClassModel="tan(Ljava.lang.Float;),plus(Ljava.lang.Float;Ljava.lang.Float;),tan(Ljava.lang.Double;),moins(Ljava.lang.Double;Ljava.lang.Double;),plus(Ljava.lang.Double;Ljava.lang.Double;),plus(Ljava.lang.Integer;Ljava.lang.Integer;),sin(Ljava.lang.Float;),multi(Ljava.lang.Double;Ljava.lang.Double;),cos(Ljava.lang.Float;),divise(Ljava.lang.Double;Ljava.lang.Double;),sin(Ljava.lang.Integer;),cos(Ljava.lang.Integer;),sin(Ljava.lang.Double;),divise(Ljava.lang.Integer;Ljava.lang.Integer;),divise(Ljava.lang.Float;Ljava.lang.Float;),moins(Ljava.lang.Integer;Ljava.lang.Integer;),tan(Ljava.lang.Integer;),moins(Ljava.lang.Float;Ljava.lang.Float;),multi(Ljava.lang.Integer;Ljava.lang.Integer;),cos(Ljava.lang.Double;),multi(Ljava.lang.Float;Ljava.lang.Float;)">
+  <children xsi:type="editmodel:ClassEditModel" name="OpMaths" location="37,360" size="308,266" id="/OpMaths" runTimeClassModel="division(DD),multiplication(FF),substraction(II),multiplication(II),division(II),addition(FF),division(FF),substraction(DD),multiplication(DD),addition(DD),addition(II),substraction(FF)">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="247,378">
-      <children xsi:type="editmodel:MethodEditModel" name="moins" id="/OpMaths#moins(Ljava.lang.Integer;Ljava.lang.Integer;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="plus" id="/OpMaths#plus(Ljava.lang.Double;Ljava.lang.Double;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="plus" id="/OpMaths#plus(Ljava.lang.Integer;Ljava.lang.Integer;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="multi" id="/OpMaths#multi(Ljava.lang.Double;Ljava.lang.Double;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="multi" id="/OpMaths#multi(Ljava.lang.Integer;Ljava.lang.Integer;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="divise" id="/OpMaths#divise(Ljava.lang.Float;Ljava.lang.Float;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="divise" id="/OpMaths#divise(Ljava.lang.Double;Ljava.lang.Double;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="moins" id="/OpMaths#moins(Ljava.lang.Double;Ljava.lang.Double;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="moins" id="/OpMaths#moins(Ljava.lang.Float;Ljava.lang.Float;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="multi" id="/OpMaths#multi(Ljava.lang.Float;Ljava.lang.Float;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="plus" id="/OpMaths#plus(Ljava.lang.Float;Ljava.lang.Float;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="divise" id="/OpMaths#divise(Ljava.lang.Integer;Ljava.lang.Integer;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="sin" id="/OpMaths#sin(Ljava.lang.Double;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="sin" id="/OpMaths#sin(Ljava.lang.Integer;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="cos" id="/OpMaths#cos(Ljava.lang.Integer;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="sin" id="/OpMaths#sin(Ljava.lang.Float;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="cos" id="/OpMaths#cos(Ljava.lang.Float;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="cos" id="/OpMaths#cos(Ljava.lang.Double;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="tan" id="/OpMaths#tan(Ljava.lang.Double;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="tan" id="/OpMaths#tan(Ljava.lang.Integer;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="tan" id="/OpMaths#tan(Ljava.lang.Float;)"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="285,216">
+      <children xsi:type="editmodel:MethodEditModel" name="substraction" id="/OpMaths#substraction(FF)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addition" id="/OpMaths#addition(FF)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="multiplication" id="/OpMaths#multiplication(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addition" id="/OpMaths#addition(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="division" id="/OpMaths#division(FF)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="division" id="/OpMaths#division(DD)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="substraction" id="/OpMaths#substraction(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="multiplication" id="/OpMaths#multiplication(DD)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addition" id="/OpMaths#addition(DD)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="substraction" id="/OpMaths#substraction(DD)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="multiplication" id="/OpMaths#multiplication(FF)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="division" id="/OpMaths#division(II)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="/Operation&lt;-/OpMaths" source="//@children.8" target="//@children.4" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
       <children xsi:type="editmodel:AssociationEndEditModel" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="201,274"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="194,274"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true" showAssociationMember="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="OpProd" location="56,495" size="260,122" id="/OpProd" runTimeClassModel="prod(),update(Ljava.util.Observable;Ljava.lang.Object;),run(),OpProd(I)">
+  <children xsi:type="editmodel:ClassEditModel" name="OpProd" location="56,495" size="260,104" id="/OpProd" runTimeClassModel="update(Ljava.util.Observable;Ljava.lang.Object;),produit(D),run()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="237,72">
-      <children xsi:type="editmodel:MethodEditModel" name="OpProd" id="/OpProd#OpProd(I)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="prod" id="/OpProd#prod()"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="237,54">
       <children xsi:type="editmodel:MethodEditModel" name="update" id="/OpProd#update(Ljava.util.Observable;Ljava.lang.Object;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="run" id="/OpProd#run()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="produit" id="/OpProd#produit(D)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="/Operation&lt;-/OpProd" source="//@children.9" target="//@children.4" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
       <children xsi:type="editmodel:AssociationEndEditModel" location="71,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="182,278"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="175,278"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true" showAssociationMember="true"/>
   </children>
@@ -193,7 +184,7 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="/Operation&lt;-/OpProdCons" source="//@children.11" target="//@children.4" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
       <children xsi:type="editmodel:AssociationEndEditModel" location="188,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="73,274"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="66,274"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true" showAssociationMember="true"/>
   </children>
@@ -221,7 +212,7 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true" showAssociationMember="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0" name="Observable" location="765,-216" size="219,279" id="java.util/Observable" runTimeClassModel="hasChanged(),obs,countObservers(),Observable(),setChanged(),notifyObservers(),deleteObservers(),addObserver(Ljava.util.Observer;),clearChanged(),deleteObserver(Ljava.util.Observer;),notifyObservers(Ljava.lang.Object;),changed">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0" name="Observable" location="765,-216" size="219,279" id="java.util/Observable" runTimeClassModel="hasChanged(),countObservers(),obs,Observable(),setChanged(),addObserver(Ljava.util.Observer;),deleteObservers(),notifyObservers(),deleteObserver(Ljava.util.Observer;),clearChanged(),notifyObservers(Ljava.lang.Object;),changed">
     <children xsi:type="editmodel:CompartmentEditModel" size="119,36">
       <children xsi:type="editmodel:AttributeEditModel" name="changed" id="java.util/Observable#changed"/>
       <children xsi:type="editmodel:AttributeEditModel" name="obs" id="java.util/Observable#obs"/>

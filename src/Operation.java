@@ -69,13 +69,21 @@ public class Operation extends Component {
 		int i = 0;
 		for(Data d : this.getInput()) {
 			types[i] = d.getValue().getClass();
+			if(types[i] == Integer.class) types[i] = int.class;
+			else if(types[i] == Float.class) types[i] = float.class;
+			else if(types[i] == Double.class) types[i] = double.class;
 			params[i] = d.getValue();
 			res += params[i];
 			i++;
 			if(i!=n) res += ", ";
 		}
 		res += ") = ";
-		Method method = this.getClass().getDeclaredMethod(op, types);
+		Method method;
+		try {
+			method = this.getClass().getDeclaredMethod(op, types);
+		} catch(NoSuchMethodException e) {
+			method = Math.class.getDeclaredMethod(op, types);
+		}
 		this.addOutput(new SF(method.invoke(this, params)));
 		i = 0;
 		n = this.getOutput().size();
@@ -136,7 +144,7 @@ public class Operation extends Component {
 				
 				this.getInput().clear();//On nettoie le input()
 				//this.required.clear();
-				this.current_argument_count = this.argument_count; //On remet à jour le compteur
+				//this.current_argument_count = this.argument_count; //On remet à jour le compteur
 			}
 			
 		} catch (InterruptedException e) {
