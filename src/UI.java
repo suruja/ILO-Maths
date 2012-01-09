@@ -1,5 +1,12 @@
 import java.lang.reflect.InvocationTargetException;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Random;
+import javax.swing.JFrame;
+import info.monitorenter.gui.chart.Chart2D;
+import info.monitorenter.gui.chart.ITrace2D;
+import info.monitorenter.gui.chart.traces.Trace2DSimple;
 
 public class UI {
 
@@ -52,7 +59,32 @@ public class UI {
 		k.set("produit",new Object[] {b});
 		
 		
-		
+		// Create a chart:  
+	    Chart2D chart = new Chart2D();
+	    // Create an ITrace: 
+	    ITrace2D trace = new Trace2DSimple(); 
+	    // Add the trace to the chart. This has to be done before adding points (deadlock prevention): 
+	    chart.addTrace(trace);    
+	    // Add all points, as it is static: 
+	    Random random = new Random();
+	    for(int z=100;z>=0;z--){
+	      trace.addPoint(z,random.nextDouble()*10.0+z);
+	    }
+	    // Make it visible:
+	    // Create a frame.
+	    JFrame frame = new JFrame("MinimalStaticChart");
+	    // add the chart to the frame: 
+	    frame.getContentPane().add(chart);
+	    frame.setSize(400,300);
+	    // Enable the termination button [cross on the upper right edge]: 
+	    frame.addWindowListener(
+	        new WindowAdapter(){
+	          public void windowClosing(WindowEvent e){
+	              System.exit(0);
+	          }
+	        }
+	      );
+	    frame.setVisible(true);
 		
 		
 		/*OpCons c = new OpCons(e);*/
