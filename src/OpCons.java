@@ -1,11 +1,22 @@
+import info.monitorenter.gui.chart.Chart2D;
+import info.monitorenter.gui.chart.ITrace2D;
+import info.monitorenter.gui.chart.traces.Trace2DSimple;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Random;
+
+import javax.swing.JFrame;
 
 
 
 public class OpCons extends Operation {
 
-	@Override
+	private float[] x = new float[100];
+	private float[] y = new float[100];
+	/*@Override
 	public synchronized void update(Observable o, Object arg) {
 		System.out.print("OpCons : On a été notifié donc on affiche le resultat : ");
 		//Data p = (Data) arg;
@@ -13,7 +24,57 @@ public class OpCons extends Operation {
 		int pwet = (Integer) arg; //On suppose pour le test que c'est un integer
 		System.out.println(pwet);
 		
+	}*/
+	
+	public Object[] plot(Object[] h){
+		return h;
 	}
+	
+	@Override
+	public synchronized void run(){
+		try {
+			this.wait();
+			System.out.println("On vient de recevoir un premier tableau");
+			this.wait();
+			System.out.println("On vient de recevoir un dernier tableau, on affiche");
+			print();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void print(){
+	    Chart2D chart = new Chart2D();
+	    // Create an ITrace: 
+	    ITrace2D trace = new Trace2DSimple(); 
+	    // Add the trace to the chart. This has to be done before adding points (deadlock prevention): 
+	    chart.addTrace(trace);    
+	    // Add all points, as it is static: 
+	    Random random = new Random();
+	    for(int z=0;z>=100;z++){
+	      trace.addPoint(this.x[z],this.y[z]);
+	    }
+	    // Make it visible:
+	    // Create a frame.
+	    JFrame frame = new JFrame("MinimalStaticChart");
+	    // add the chart to the frame: 
+	    frame.getContentPane().add(chart);
+	    frame.setSize(400,300);
+	    // Enable the termination button [cross on the upper right edge]: 
+	    frame.addWindowListener(
+	        new WindowAdapter(){
+	          public void windowClosing(WindowEvent e){
+	              System.exit(0);
+	          }
+	        }
+	      );
+	    frame.setVisible(true);
+	}
+	
+	
+	/*
 	public OpCons(){
 		this.output = new ArrayList<Data>();
 		Thread t = new Thread(this);
@@ -40,6 +101,6 @@ public class OpCons extends Operation {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
 
 }

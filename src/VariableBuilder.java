@@ -4,7 +4,7 @@ import java.util.Observable;
 
 
 public class VariableBuilder extends Operation {
-	public double[] increment(double a, double b, double p) {
+	public synchronized double[] increment(double a, double b, double p) {
 		System.out.println("pppppppppppppppppppppppppp");
 		int m = (int) ((b-a)/p);
 		this.argument_count = m;
@@ -34,7 +34,7 @@ public class VariableBuilder extends Operation {
 		int n=1;
 		System.out.println("Le producteur est lancé");
 		//if(this.getName()=="produit")	n=1;
-		while(i<n){ //On effectue la boucle qu'une seule fois pour le moment
+		while(i<n){ 
 			try {
 					this.addInput(new SF(this.n[i]));	//Même procédure qu'un composant
 					this.eval(this.name);										//normal
@@ -64,6 +64,15 @@ public class VariableBuilder extends Operation {
 		//this.clearOutput();
 		this.clearInput();												//On nettoie l'Input
 		n=this.n.length;
+
+		Thread.currentThread();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		System.out.println("Taille du tableau : "+n);
 		}
 	}

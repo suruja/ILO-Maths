@@ -43,6 +43,7 @@ public class UI {
 		OpBool g = new OpBool();
 		OpProdCons y = new OpProdCons();
 		OpProdCons x = new OpProdCons();
+		OpCons v = new OpCons();
 		
 		OpProd k = new OpProd();
 		VariableBuilder i = new VariableBuilder();
@@ -52,9 +53,10 @@ public class UI {
 		
 
 		//f.set("sin", new Object[] {e});
-		y.set("buffer", new Object[] {c});
+		//y.set("buffer", new Object[] {c});
 		x.set("buffer", new Object[] {i});
-		c.set("division", new Object[] {i, k});
+		//c.set("division", new Object[] {i, k});
+		//v.set("plot", new Object[] {x,y});
 		//g.set("tan", new Object[] {i});
 		//h.set("exp", new Object[] {e});
 		//d.set("substraction", new Object[] {i, c});
@@ -64,7 +66,7 @@ public class UI {
 		
 		
 		// Create a chart:  
-	    Chart2D chart = new Chart2D();
+	/*    Chart2D chart = new Chart2D();
 	    // Create an ITrace: 
 	    ITrace2D trace = new Trace2DSimple(); 
 	    // Add the trace to the chart. This has to be done before adding points (deadlock prevention): 
@@ -90,7 +92,7 @@ public class UI {
 	      );
 	    frame.setVisible(true);
 		
-		
+		*/
 		/*OpCons c = new OpCons(e);*/
 		
 		/**** Mise en place des Observers ****/
