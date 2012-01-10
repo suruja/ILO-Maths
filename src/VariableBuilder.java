@@ -75,10 +75,10 @@ public class VariableBuilder extends Operation {
 		System.out.println("Taille du tableau : "+d);
 		}
 	}
-	public double produit(double a){
+	public double iterate(double a){
 		return a;
 	}
-	public double produit(double a, double b, double c){
+	public double iterate(double a, double b, double c){
 		double[] n = new double[100]; 
 		n=this.increment(a,b,c);
 		int i=0;

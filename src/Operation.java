@@ -79,6 +79,8 @@ public class Operation extends Component {
 			if(types[i] == Integer.class) types[i] = int.class;
 			else if(types[i] == Float.class) types[i] = float.class;
 			else if(types[i] == Double.class) types[i] = double.class;
+			else if(types[i] == Long.class) types[i] = long.class;
+			else if(types[i] == Boolean.class) types[i] = boolean.class;
 			params[i] = d.getValue();
 			res += params[i];
 			i++;
@@ -119,23 +121,6 @@ public class Operation extends Component {
 		int i;
 		try {
 			while(true) {
-			/*	for(Observable r : this.required) {
-					synchronized(this) {
-						if(this.current_argument_count != 0) {
-							if(((Component) r).isOutputEmpty()) {
-								System.out.println("Operation \""+this.getName()+"\" : on attend \""+ ((Operation) r).getName() +"\"");
-								this.wait();
-							}
-							else {
-								System.out.println("Operation \""+this.getName()+"\" : on a déjà \""+((Operation) r).getName()+"\"");
-								for(Data d : ((Component) r).getOutput()) {
-									this.arguments.put(r, d);
-									this.current_argument_count--;
-								}
-							}
-						}
-					}
-				}*/
 				for(i=0 ; i<this.current_argument_count ; i++){
 					this.wait();//On attend de récupérer toutes nos données
 				}

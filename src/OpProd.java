@@ -11,31 +11,8 @@ public class OpProd extends Operation {
 		// TODO Auto-generated method stub
 		
 	}
-/*	
-	public OpProd(int a){
-		this.output = new ArrayList<Data>();
-		SF tmp = new SF(a);
-		this.output.add(tmp);
-		System.out.println("OpProd : Production de valeurs : ");
-		System.out.println(tmp.value);
-		
-	}
-	
-	
-	public Data prod(){
-		Data tmp = this.getLastOutput(0);
-		System.out.println("OpProd : On notifie");
-		this.setChanged();
-		this.notifyObservers(tmp);
-		return tmp;
-	}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-*/
+
 	@Override
 	public synchronized void run() {
 		int i=0;
@@ -68,13 +45,7 @@ public class OpProd extends Operation {
 			e.printStackTrace();
 		}
 		i++;
-	/*	if(this.getName()=="iterateur"){
-			Data a[],b,c;
-			Double d;
-			a=(Data[]) this.arguments;
-			d = (Double) a[1].value;
-			
-		}*/
+
 		//for( Data d : this.arguments.values()) d.setValue(n[i]);			//On affecte les nouvelles valeures
 		//this.clearOutput();
 		this.clearInput();												//On nettoie l'Input
@@ -83,10 +54,15 @@ public class OpProd extends Operation {
 		}
 		}
 	}
-	public double produit(double a){
+	public double produce(double a){
 		return a;
 	}
-	public double produit(double a, double b, double c){
+	
+	public boolean produce(boolean a){
+		return a;
+	}
+	
+	public double produce(double a, double b, double c){
 		double[] n = new double[100]; 
 		n=this.increment(a,b,c);
 		int i=0;
